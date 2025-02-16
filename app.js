@@ -1,18 +1,19 @@
-const express = require("express");
+import express from "express";
+import recipeRoutes from "./routes/recipes.route.js";
 
 const app = express();
-const dotenv = require("dotenv");
-const path = require("path");
-dotenv.config({ path: path.join(__dirname, "config", "config.env") });
+const PORT = 3005;
 
-app.get("/", (req, res, next) => {
+app.get("/", (req, res) => {
   res.json({
     message: "Hello Node JS",
   });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(
-    `server running on port ${process.env.PORT} to ${process.env.NODE_ENV}`
-  );
+// CURD
+
+app.use("/api/v1", recipeRoutes);
+
+app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`);
 });
