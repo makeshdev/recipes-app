@@ -1,8 +1,15 @@
 import express from "express";
 import recipeRoutes from "./routes/recipes.route.js";
+import connectDB from "./lib/db.js";
 
 const app = express();
 const PORT = 3005;
+
+//data understanding middleware
+app.use(express.json());
+
+// connect DB
+connectDB();
 
 app.get("/", (req, res) => {
   res.json({
@@ -11,7 +18,6 @@ app.get("/", (req, res) => {
 });
 
 // CURD
-
 app.use("/api/v1", recipeRoutes);
 
 app.listen(PORT, () => {

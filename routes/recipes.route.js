@@ -4,6 +4,7 @@ import {
   RecipePost,
   RecipePut,
   RecipeDelete,
+  RecipeDetail,
 } from "../controllers/recipes.controller.js";
 
 const router = express.Router();
@@ -11,6 +12,9 @@ const router = express.Router();
 
 // R - for Reading
 router.get("/recipes", RecipeGet);
+
+// R - for Reading single data
+router.get("/recipes/:id", RecipeDetail);
 
 // C - for Creating
 router.post("/recipes", RecipePost);
